@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="javascript.js"></script>
+</head>
+<body>
+    <input type="number" placeholder="Calificacion" id="register">
+    <button type="button" onclick="materia();">Siguiente Materia</button>
+    <button type="button" onclick="guardar();">Guardar Registro / Siguiente Alumno</button>
+    <button type="button" onclick="resultados();">Resultados</button><br><br>
+
+    <!--Mostrar las calificaciones actuales sin registrar-->
+    <div id="temporal">Registro sin guardar: </div>
+    <label>-------------------------------------------------------</label><br>
+
+    <!--Apartado donde estarán las calificaciones-->
+    <div id="datos"></div><br>
+
+    <!--Apartado para mostrar los resultados-->
+    <div id="resultados"></div>
+</body>
+</html>
