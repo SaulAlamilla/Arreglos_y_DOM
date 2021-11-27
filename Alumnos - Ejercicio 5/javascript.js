@@ -15,17 +15,32 @@ function guardar(){
     alumno.push(temporal);
     calificaciones.length = 0;
 
-    //IMPRIMIR LOS VALORES EN LA PANTALLA
-    let datos = document.getElementById("datos");
-    let cali = document.createElement("div")
-    cali.innerHTML = "Alumno" +alumno.length + ": "+alumno[alumno.length-1];
-    datos.appendChild(cali);
+
+    //DIBUJAR TABLA
+    let tabla = document.getElementById("tabla");
+    let tr = document.createElement("tr");
+
+    let numAlumno = document.createElement("td");
+    numAlumno.innerHTML = "Alumno" + alumno.length;
+    tr.append(numAlumno);
+
+    for (let i=0; i<alumno[alumno.length-1].length; i++){
+        let td = document.createElement("td");
+        td.setAttribute("style","border: 1px solid gray; padding:5px;")
+        td.innerHTML = alumno[alumno.length-1][i];
+        tr.append(td);
+    }
+    tabla.append(tr);
 }
 function resultados(){
     let aprobados=0;
     let reprobados=0;
     let suma_aprobados = 0;
     let suma_reprobados = 0;
+
+    //Apartado para imprimir los promedios
+    let datos = document.getElementById("datos");
+    datos.innerText = "-------------------PROMEDIOS------------------\n";
 
     //variables para la cantidad de materias, aprobadas y reprobadas
     let total_aprobadas = 0;
@@ -41,6 +56,12 @@ function resultados(){
         total_materias = total_materias + Number(alumno[i].length);
 
         promedioIndividual = promedioIndividual/Number(alumno[i].length);
+        //---Imprimir promedios individuales---
+        let cali = document.createElement("div");
+        cali.innerHTML = "Alumno "+(i+1)+ ": "+promedioIndividual;
+        datos.append(cali);
+
+        //Verificar promedios
         if (promedioIndividual >= 70){
             aprobados++;
             suma_aprobados = suma_aprobados + (promedioIndividual*Number(alumno[i].length));
@@ -53,7 +74,7 @@ function resultados(){
 
     }
     document.getElementById("resultados").innerText +=
-        "\n-------------------RESULTADOS-----------------" +
+        "\n-------------------RESULTADOS-----------------\n" +
         "\nAlumnos aprobados: " + aprobados +
         "\nPorcentaje de aprobacion: " + aprobados*100/Number(alumno.length)+"%"+
         "\nAlumnos reprobados: " + reprobados +
